@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard test env</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <!-- Vue3 is new for me, so pardon syntaxically vue2 looking structure -->
+    <div id="app">
+        <generic-guage
+            v-for="val in Object.entries(flaskData)"
+            :flask_values='val'
+            >
+        </generic-guage>
+    </div>
+</body>
+
+<script src="static/js/dash.js"></script>
+</html>
