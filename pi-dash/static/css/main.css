@@ -1,3 +1,18 @@
 .sensor-value {
     background-color: rgba(0, 0, 0, 0.403) ;
 }
+
+.guage-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: aliceblue;
+    align-items: center;
+    justify-content: center;
+}
+
+.guage-container > * {
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+}

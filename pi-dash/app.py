@@ -10,7 +10,7 @@ app = Flask(__name__, static_url_path='/static')
 def render_homepage():
     return render_template('index.html')
 
-@app.route('/test_info')
+@app.route('/rpms')
 def return_data():
     return str(random.randint(250, 8900))
 
@@ -28,6 +28,10 @@ def return_coolant_temp():
 
 @app.route('/boost')
 def return_boost_temp():
+    return str(random.randint(-5, 15))
+
+@app.route('/fuel')
+def return_fuel_temp():
     return str(random.randint(-5, 15))
 
 
