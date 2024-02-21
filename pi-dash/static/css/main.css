@@ -15,4 +15,7 @@
     margin: 3rem;
     display: flex;
     flex-direction: column;
+    width: 5rem;
+    align-items: center;
+    justify-content: center;
 }

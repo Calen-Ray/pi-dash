@@ -4,14 +4,30 @@ const genericGuage = {
     emits: ['updatePost'],
     template: `
     <div class="generic-guage">
-        <h3 class="sensor-value">[[ flask_values[1] ]]</h3>
-        <h3 class="sensor-name">[[ flask_values[0] ]]</h3>
+        <h3 class="sensor-value">[[ mutableList[1] ]]</h3>
+        <h3 class="sensor-name">[[ mutableList[0] ]]</h3>
     </div>
     `,
     mounted() {
         console.log(`Successfully mounted ${this.flask_values[0]} component`)
+        setInterval(() => {
+            this.fetchData(this.flask_values[0])
+        }, 500);
     },
 
+    methods: {
+        // Think of this as a place to keep your functions you'll use in app
+        async fetchData(endpointName) {
+            this.mutableList[1] = await (await fetch(`/${endpointName}`)).json()
+        },
+    },
+
+    data() {
+        // think of this as 'global' variables but for inter-app
+        return {
+            mutableList: this.flask_values
+        }
+    },
     created() {
 
     }
