@@ -3,8 +3,8 @@ const genericGuage = {
     props: ['flask_values'],
     emits: ['updatePost'],
     template: `
-        <h3>[[ flask_values[1] ]]</h3>
-        <h3>[[ flask_values[0] ]]</h3>
+        <h3 class="sensor-value">[[ flask_values[1] ]]</h3>
+        <h3 class="sensor-name">[[ flask_values[0] ]]</h3>
     `,
     mounted() {
         console.log(`Successfully mounted ${this.flask_values[0]} component`)
@@ -25,6 +25,7 @@ var app = Vue.createApp({
         this.fetchData('speed')
         this.fetchData('oil_temp')
         this.fetchData('coolant_temp')
+        this.fetchData('boost')
     },
 
     data() {

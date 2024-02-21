@@ -26,7 +26,10 @@ def return_oil_temp():
 def return_coolant_temp():
     return str(random.randint(32, 280))
 
+@app.route('/boost')
+def return_boost_temp():
+    return str(random.randint(-5, 15))
+
 
 if __name__ == '__main__':
-
-    app.run()
+    app.run(port=8080)
