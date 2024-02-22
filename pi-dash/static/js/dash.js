@@ -3,9 +3,9 @@ const genericGuage = {
     props: ['flask_values'],
     emits: ['updatePost'],
     template: `
-    <div class="generic-guage">
+    <div :class="[guageTitle]">
         <h3 class="sensor-value">[[ mutableList[1] ]]</h3>
-        <h3 class="sensor-name">[[ mutableList[0] ]]</h3>
+        <h3 class="sensor-name">[[ mutableList[0].replace('_', ' ') ]]</h3>
     </div>
     `,
     mounted() {
@@ -25,7 +25,43 @@ const genericGuage = {
     data() {
         // think of this as 'global' variables but for inter-app
         return {
-            mutableList: this.flask_values
+            mutableList: this.flask_values,
+            guageTitle: this.flask_values[0] + ' generic-guage '
+        }
+    },
+    created() {
+
+    }
+}
+
+// speed guage component to be imported for speedometer styling specific skins
+const speedGuage = {
+    props: ['flask_values'],
+    emits: ['updatePost'],
+    template: `
+    <div class="speed-guage orbitron-font" >
+        <p class="speed-value">[[ mutableList[1] ]]</p>
+        <p class="speed-name">MPH</p>
+    </div>
+    `,
+    mounted() {
+        console.log(`Successfully mounted speed guage styled component`)
+        setInterval(() => {
+            this.fetchData(this.mutableList[0])
+        }, 500);
+    },
+
+    methods: {
+        // Think of this as a place to keep your functions you'll use in app
+        async fetchData(endpointName) {
+            this.mutableList[1] = await (await fetch(`/${endpointName}`)).json()
+        },
+    },
+
+    data() {
+        // think of this as 'global' variables but for inter-app
+        return {
+            mutableList: [ 'speed', this.flask_values]
         }
     },
     created() {
@@ -65,7 +101,8 @@ var app = Vue.createApp({
     },
 
     components: {
-        genericGuage
+        genericGuage,
+        speedGuage
     }
 
 
