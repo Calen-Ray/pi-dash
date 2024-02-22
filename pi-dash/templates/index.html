@@ -5,11 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dashboard test env</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="static/css/main.css"></link>
+    <!-- <link rel="stylesheet" href="static/css/main.css"></link> -->
+    <link rel="stylesheet" href="static/css/calens.css"></link>
+    
+    <!-- Font family stuff to be locally downloaded -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Vue3 is new for me, so pardon syntaxically vue2 looking structure -->
     <div id="app">
+        <div classs="speed-container">
+            <speed-guage
+            :flask_values='flaskData["speed"]'
+            >
+    
+            </speed-guage>
+        </div>
         <div class="guage-container">
             <generic-guage
             v-for="val in Object.entries(flaskData)"
